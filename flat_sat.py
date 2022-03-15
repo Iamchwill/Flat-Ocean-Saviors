@@ -1,7 +1,7 @@
 #complete CAPITALIZED sections
 
-#AUTHOR: 
-#DATE:
+#AUTHOR: Ocean Saviors
+#DATE: 3/18/2022
 
 #import libraries
 import time
@@ -33,27 +33,29 @@ def git_push():
         print('Couldn\'t upload to git')
 """
 
-    
+
 #SET THRESHOLD
-threshold = 
+threshold =
 
 
 #read acceleration
 while True:
     accelX, accelY, accelZ = sensor.acceleration
 
+    if accelX > threshold or accelY > threshold or accelZ > threshold:
+        time.sleep(2)
     #CHECK IF READINGS ARE ABOVE THRESHOLD
         #PAUSE
 
-    
-        #TAKE/SAVE/UPLOAD A PICTURE 
-        name = ""     #Last Name, First Initial  ex. FoxJ
-        
+
+        #TAKE/SAVE/UPLOAD A PICTURE
+        name = "ChenW"     #Last Name, First Initial  ex. FoxJ
+
         if name:
             t = time.strftime("_%H%M%S")      # current time string
             imgname = ('/home/pi/FlatSatChallenge/Images/YOURFOLDER/%s%s' % (name,t)) #change directory to your folder
-    
+
             #<YOUR CODE GOES HERE>#
-            
-    
+
+
     #PAUSE
