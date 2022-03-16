@@ -11,6 +11,7 @@ import busio
 import adafruit_bno055
 #from git import Repo
 from picamera import PiCamera
+from camera import main
 
 #setup imu and camera
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -32,10 +33,21 @@ def git_push():
     except:
         print('Couldn\'t upload to git')
 """
+#Alt by Avinda
+"""
+def git_push():
+    try:
+        os.system("git add -A")
+        msg = input("add message: ")
+        os.system(f"git commit -m {msg}")
+        os.system("git push")
+    except:
+        print("Couldn't upload to git")
+"""
 
 
 #SET THRESHOLD
-threshold =
+threshold = 1
 
 
 #read acceleration
@@ -43,19 +55,7 @@ while True:
     accelX, accelY, accelZ = sensor.acceleration
 
     if accelX > threshold or accelY > threshold or accelZ > threshold:
-        time.sleep(2)
-    #CHECK IF READINGS ARE ABOVE THRESHOLD
-        #PAUSE
-
-
-        #TAKE/SAVE/UPLOAD A PICTURE
-        name = "ChenW"     #Last Name, First Initial  ex. FoxJ
-
-        if name:
-            t = time.strftime("_%H%M%S")      # current time string
-            imgname = ('/home/pi/FlatSatChallenge/Images/YOURFOLDER/%s%s' % (name,t)) #change directory to your folder
-
-            #<YOUR CODE GOES HERE>#
+        main()
 
 
     #PAUSE
