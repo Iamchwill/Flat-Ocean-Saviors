@@ -16,7 +16,6 @@ from camera import main
 #setup imu and camera
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = adafruit_bno055.BNO055_I2C(i2c)
-camera = PiCamera()
 
 """
 #bonus: function for uploading image to Github
