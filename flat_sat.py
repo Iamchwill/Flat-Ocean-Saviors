@@ -11,7 +11,6 @@ import busio
 import adafruit_bno055
 #from git import Repo
 from picamera import PiCamera
-from camera import main
 
 #setup imu and camera
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -43,18 +42,33 @@ def git_push():
     except:
         print("Couldn't upload to git")
 """
-
-
+    
 #SET THRESHOLD
-threshold = 1
+threshold = 10
+
+newCamera = PiCamera()
+time.sleep(3)
 
 
 #read acceleration
 while True:
     accelX, accelY, accelZ = sensor.acceleration
 
-    if accelX > threshold or accelY > threshold or accelZ > threshold:
-        main()
+    #CHECK IF READINGS ARE ABOVE THRESHOLD
+    if abs(accelX) > threshold or abs(accelY) > threshold or abs(accelZ-9.81) > threshold:
+        #PAUSE
+        time.sleep(0.1)
 
-
+        #TAKE/SAVE/UPLOAD A PICTURE 
+        name = "SaviorsO"     #Last Name, First Initial  ex. FoxJ
+        
+        if name:
+            t = time.strftime("_%H%M%S")      # current time string
+            imgname = ('/home/pi/Desktop/newImage%s%s.jpg' % (name,t)) #change directory to your folder
+    
+            #<YOUR CODE GOES HERE>#
+            newCamera.capture(imgname) #saves image into a file
+            
+    
     #PAUSE
+    time.sleep(1)
