@@ -32,7 +32,7 @@ def git_push():
         print('Couldn\'t upload to git')
 """
 #Alt by Avinda
-"""
+
 def git_push():
     try:
         os.system("git add -A")
@@ -41,7 +41,6 @@ def git_push():
         os.system("git push")
     except:
         print("Couldn't upload to git")
-"""
     
 #SET THRESHOLD
 threshold = 10
@@ -63,12 +62,17 @@ while True:
         name = "SaviorsO"     #Last Name, First Initial  ex. FoxJ
         
         if name:
+            newCamera.start_preview()
+            print("Preparing: Please Wait")
+            time.sleep(5)
             t = time.strftime("_%H%M%S")      # current time string
             imgname = ('/home/pi/Desktop/newImage%s%s.jpg' % (name,t)) #change directory to your folder
     
             #<YOUR CODE GOES HERE>#
             newCamera.capture(imgname) #saves image into a file
-            
+            print("Complete. Now Uploading")
+            git_push()
+            print("Completed Upload")
     
     #PAUSE
     time.sleep(1)
