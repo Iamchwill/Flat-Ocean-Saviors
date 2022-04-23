@@ -46,7 +46,6 @@ def git_push():
 threshold = 10
 
 newCamera = PiCamera()
-time.sleep(3)
 
 
 #read acceleration
